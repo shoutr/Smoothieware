@@ -146,6 +146,10 @@ function playFile(filename) {
   runCommandSilent("play /sd/"+filename);
 }
 
+function eraseFile(filename) {
+  runCommandSilent("rm /sd/"+filename);
+}
+
 function refreshFiles() {
   document.getElementById('fileList').innerHTML = '';
   runCommandCallback("M20", function(data){
@@ -159,6 +163,8 @@ function refreshFiles() {
           cell.appendChild(text);
           cell = row.insertCell(1);
           cell.innerHTML = "[<a href='javascript:void(0);' onclick='playFile(\""+item+"\");'>Play</a>]";
+          cell = row.insertCell(1);
+          cell.innerHTML = "[<a href='javascript:void(0);' onclick='eraseFile(\""+item+"\");'>erase</a>]";
         }
         //$( "#result" ).append( this + '<br/>' );
       });
